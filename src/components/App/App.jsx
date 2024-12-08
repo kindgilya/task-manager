@@ -8,9 +8,73 @@ const App = () => {
     const [tasks, setTasks] = useState([]);
 
     useEffect(() => {
-    fetch('https://jsonplaceholder.typicode.com/todos')
+    fetch('https://dummyjson.com/todos/?limit=10')
     .then((response) => response.json())
-    .then((data) => setTasks(data))
+    .then((data) => {
+        const {limit, skip, todos, total} = data;
+
+        const titles = [
+            {
+            title:'Пойти гулять', 
+            category: 'relax'
+            },
+
+            {
+            title:'Поспать', 
+            category: 'relax'
+            },
+
+            {
+            title:'Пойти покодить', 
+            category: 'relax'
+            },
+
+            {
+            title:'Заняться спортом', 
+            category: 'sport'
+            },
+
+            {
+            title:'Изучать js',
+            category: 'learn'
+            },
+
+            {
+            title:'Изучать php',
+            category: 'learn'
+            },
+
+            {
+            title:'Изучать Английский',
+            category: 'learn'
+            },
+
+            {
+            title:'Играть в игру гта',
+            category: 'game'
+            },
+
+            {
+            title:'Играть в игру wot',
+            category: 'game'
+            },
+
+        {
+        title:'Играть в игру гта5',
+        category: 'game'
+        },]
+
+
+        const modifyTodos = todos.map((el, i) => {
+        return {
+            ...el,
+            title: titles[i].title,
+            category: titles[i].category
+        }
+        })
+
+        setTasks(modifyTodos)
+    })
     .catch((error) => console.error('its my error->', error))
     }, [])
     
@@ -20,7 +84,11 @@ const App = () => {
                 <Filter />
             </div>
             <div className={cn(styles['task-manager__list'])}>
-                <Task />
+            {/* {id, title, category, todo} */}
+            {
+                tasks.map((el) => <Task {...el} />)
+            }
+                
             </div>
         </div>
     )

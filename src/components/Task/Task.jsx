@@ -3,12 +3,12 @@ import styles from "./task.module.scss";
 import cn from 'classnames';
 import Button from '../Button/Button';
 
-const Task = () => {
+const Task = ({id, title, category, todo}) => {
   return (
     <div className={cn(styles['task'])}>
-			<h3 className={cn(styles['task__title'])}>header</h3>
-			<span className="task__category">category: any</span>
-            <p className={cn(styles['task__desc'])}></p>
+			<h3 className={cn(styles['task__title'])}>{title}</h3>
+			<span className="task__category">{category}</span>
+            <p className={cn(styles['task__desc'])}>{todo}</p>
             <div className={cn(styles['task__control'])}>
                 <Button use='remove' text='remove' handler={() => {}}/>
                 <Button use='favorite' text='favorite' handler={() => {}}/>

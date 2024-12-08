@@ -1,0 +1,11 @@
+.filter-item {
+    padding: 10px 25px;
+    // text-align: center;
+    color: rgb(141, 91, 148);
+    border-radius: 10px;
+
+    &--active{
+        background-color: rgb(141, 91, 148);
+        color: #fff;
+    }
+}

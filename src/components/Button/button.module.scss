@@ -1,0 +1,22 @@
+.btn {
+    cursor: pointer;
+		padding: 10px 30px;
+		border-radius: 10px;
+		color: #fff;
+		
+		&:hover {
+        opacity: .8;
+		}
+		
+    &--remove {
+        background-color: #c7432c;
+    }
+
+		&--favorite {
+        background-color: #db7f15;
+    }
+
+		&--done {
+        background-color: #199b3a;
+    }
+}

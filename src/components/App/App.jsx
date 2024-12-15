@@ -81,6 +81,17 @@ const App = () => {
     })
     .catch((error) => console.error('its my error->', error))
     }, [])
+
+    const getUniqueCategories = () => {
+       const reduceResult = tasks.reduce((acc,el) => {
+       return [
+            ...acc,
+            el.category
+        ]
+       },[])
+       
+       return Array.from(new Set(reduceResult));
+    }
     
     return(
         <div className={cn(styles['task-manager'])}>

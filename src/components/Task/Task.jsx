@@ -33,9 +33,6 @@ export default Task
 
 ДЗ:
 
-1 сделать дизайн для таска (отлепить их gap)
-2 добавить модификаторы на таск (favorite done)
-3. оживить кнопки (favorite done) done -Ю bgc green , favorite -> border_b 
 4. сделать прокрутку тасков, пусть показывается 5
 
 */

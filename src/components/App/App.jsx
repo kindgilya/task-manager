@@ -7,6 +7,10 @@ import Task from "../Task/Task";
 const App = () => {
     const [tasks, setTasks] = useState([]);
 
+    const removeTaskHandler = (id) => {
+        setTasks(tasks.filter((el) => el.id !== id));
+    }
+
     useEffect(() => {
     fetch('https://dummyjson.com/todos/?limit=10')
     .then((response) => response.json())
@@ -86,7 +90,7 @@ const App = () => {
             <div className={cn(styles['task-manager__list'])}>
             {/* {id, title, category, todo} */}
             {
-                tasks.map((el) => <Task {...el} />)
+                tasks.map((el) => <Task {...el} handler={removeTaskHandler} key={el.id}/>)
             }
             </div>
         </div>

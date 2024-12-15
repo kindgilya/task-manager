@@ -88,7 +88,6 @@ const App = () => {
             {
                 tasks.map((el) => <Task {...el} />)
             }
-                
             </div>
         </div>
     )

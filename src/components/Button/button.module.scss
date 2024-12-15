@@ -1,6 +1,6 @@
 .btn {
     cursor: pointer;
-		padding: 10px 30px;
+		padding: 10px 15px;
 		border-radius: 10px;
 		color: #fff;
 		
@@ -12,11 +12,11 @@
         background-color: #c7432c;
     }
 
-		&--favorite {
+	&--favorite {
         background-color: #db7f15;
     }
 
-		&--done {
+	&--done {
         background-color: #199b3a;
     }
 }

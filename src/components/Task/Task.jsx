@@ -7,7 +7,7 @@ const Task = ({id, title, category, todo}) => {
   return (
     <div className={cn(styles['task'])}>
 			<h3 className={cn(styles['task__title'])}>{title}</h3>
-			<span className="task__category">{category}</span>
+			<span className={cn(styles['task__category'])}>{category}</span>
             <p className={cn(styles['task__desc'])}>{todo}</p>
             <div className={cn(styles['task__control'])}>
                 <Button use='remove' text='remove' handler={() => {}}/>
@@ -24,10 +24,9 @@ export default Task
 
 ДЗ:
 
-1 каждому коспоненту добавть необходимые пропсы
-2. отрисовать детей в родителях
-3. сгенерировать данные массив объектов (таски) (в отдельном файле)
-4. отрисовываем таски по данным
-5. прописать логику
+1 сделать дизайн для таска (отлепить их gap)
+2 добавить модификаторы на таск (favorite done)
+3. оживить кнопки (favorite done) done -Ю bgc green , favorite -> border_b 
+4. сделать прокрутку тасков, пусть показывается 5
 
 */

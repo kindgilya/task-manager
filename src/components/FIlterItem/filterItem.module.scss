@@ -3,6 +3,11 @@
     // text-align: center;
     color: rgb(141, 91, 148);
     border-radius: 10px;
+    cursor: pointer;
+
+    &:hover{
+        background-color: #f0ebf1;
+    }
 
     &--active{
         background-color: rgb(141, 91, 148);

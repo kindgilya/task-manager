@@ -96,7 +96,7 @@ const App = () => {
     return(
         <div className={cn(styles['task-manager'])}>
             <div className={cn(styles['task-manager__filter'])}>
-                <Filter />
+                <Filter data={getUniqueCategories()}/>
             </div>
             <div className={cn(styles['task-manager__list'])}>
             {/* {id, title, category, todo} */}
@@ -109,3 +109,16 @@ const App = () => {
 }
 
 export default App;
+
+/* 
+
+ДЗ:
+1. отправить данные в фильтр
+2. отрисовать детей
+3. при клике на ребенка фильтруем (handler)
+4. заверстать шапку с лбым дизайном
+5. добаавить в шапрку счетчик: всего тасков: 10
+
+* пусть в шапке идет потсчет: dane: 5 fav: 3
+
+*/

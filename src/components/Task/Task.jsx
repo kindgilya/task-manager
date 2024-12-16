@@ -28,11 +28,3 @@ const Task = ({id, title, category, todo, handler}) => {
 }
 
 export default Task
-
-/* 
-
-ДЗ:
-
-4. сделать прокрутку тасков, пусть показывается 5
-
-*/

@@ -6,6 +6,7 @@ import Task from "../Task/Task";
 
 const App = () => {
     const [tasks, setTasks] = useState([]);
+    const [activeCategory, setActiveCategory] = useState('all');
 
     const removeTaskHandler = (id) => {
         setTasks(tasks.filter((el) => el.id !== id));
@@ -77,32 +78,44 @@ const App = () => {
         }
         })
 
+        // console.log(modifyTodos);
+
         setTasks(modifyTodos)
     })
     .catch((error) => console.error('its my error->', error))
     }, [])
 
-    const getUniqueCategories = () => {
+    const getUniqueCategories = (tasks) => {
        const reduceResult = tasks.reduce((acc,el) => {
        return [
             ...acc,
             el.category
         ]
-       },[])
+       },["all"])
        
        return Array.from(new Set(reduceResult));
+    }
+
+    const sortTasksHandler = (category) => {
+        setActiveCategory(category);
+    }
+
+    const getSortTasksByCurrentCategory = (tasks, category) => {
+        if (category === 'all') {
+           return tasks.map((el) => <Task {...el} handler={removeTaskHandler} key={el.id}/>); 
+        }
+        
+        return tasks.filter((el) => el.category === category).map((el) => <Task {...el} handler={removeTaskHandler} key={el.id}/>); 
     }
     
     return(
         <div className={cn(styles['task-manager'])}>
             <div className={cn(styles['task-manager__filter'])}>
-                <Filter data={getUniqueCategories()}/>
+                <Filter activeCategory={activeCategory} data={getUniqueCategories(tasks)} handler={sortTasksHandler}/>
             </div>
             <div className={cn(styles['task-manager__list'])}>
             {/* {id, title, category, todo} */}
-            {
-                tasks.map((el) => <Task {...el} handler={removeTaskHandler} key={el.id}/>)
-            }
+            {getSortTasksByCurrentCategory(tasks, activeCategory)}
             </div>
         </div>
     )
@@ -110,11 +123,12 @@ const App = () => {
 
 export default App;
 
+
 /* 
 
 ДЗ:
-1. отправить данные в фильтр
-2. отрисовать детей
+1. отправить данные в фильтр +
+2. отрисовать детей +
 3. при клике на ребенка фильтруем (handler)
 4. заверстать шапку с лбым дизайном
 5. добаавить в шапрку счетчик: всего тасков: 10

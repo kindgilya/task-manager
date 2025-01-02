@@ -128,10 +128,18 @@ const App = () => {
         
         return tasks.filter((el) => el.category === category).map((el) => <Task {...el} removeHandler={removeTaskHandler} doneHandler={doneTaskHandler} favoriteHandler={favoriteTaskHandler} key={el.id}/>); 
     }
+
+    const getTotalDone = () => {
+        return tasks.filter(el => el.done).length;
+    }
+
+    const getTotalFavorite = () => {
+        return tasks.filter(el => el.favorite).length;
+    }
     
     return(
         <div className={cn(styles['task-manager'])}>
-            <Header login="jack" total={tasks.length} done="0" favorite="0"/>
+            <Header login="jack" total={tasks.length} done={getTotalDone()} favorite={getTotalFavorite()}/>
             <div className={cn(styles['task-manager__filter'])}>
                 <Filter activeCategory={activeCategory} data={getUniqueCategories(tasks)} handler={sortTasksHandler}/>
             </div>

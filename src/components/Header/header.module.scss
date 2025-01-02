@@ -1,0 +1,15 @@
+.header {
+	font-size: 18px;
+	padding: 10px 10px;
+	background-color: rgb(186, 213, 238);
+	margin-bottom: 10px;
+	border-radius: 10px;
+
+    &__counts{
+        display: flex;
+        justify-content: center;
+		align-items: center;
+        gap: 5px;
+    }
+}
+

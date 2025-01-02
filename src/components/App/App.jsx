@@ -3,6 +3,7 @@ import styles from "./app.module.scss";
 import cn from 'classnames';
 import Filter from "../Filter/Filter";
 import Task from "../Task/Task";
+import Header from "../Header/Header";
 
 const App = () => {
     const [tasks, setTasks] = useState([]);
@@ -10,6 +11,24 @@ const App = () => {
 
     const removeTaskHandler = (id) => {
         setTasks(tasks.filter((el) => el.id !== id));
+    }
+
+    const doneTaskHandler = (id) => {
+        setTasks(tasks.map((task) => {
+            if (task.id === id) {
+                task.done = !task.done;
+            }
+            return task;
+        }))
+    }
+
+    const favoriteTaskHandler = (id) => {
+        setTasks(tasks.map((task) => {
+            if (task.id === id) {
+                task.favorite = !task.favorite;
+            }
+            return task;
+        }))
     }
 
     useEffect(() => {
@@ -74,7 +93,9 @@ const App = () => {
         return {
             ...el,
             title: titles[i].title,
-            category: titles[i].category
+            category: titles[i].category,
+            done: false,
+            favorite: false
         }
         })
 
@@ -102,14 +123,15 @@ const App = () => {
 
     const getSortTasksByCurrentCategory = (tasks, category) => {
         if (category === 'all') {
-           return tasks.map((el) => <Task {...el} handler={removeTaskHandler} key={el.id}/>); 
+           return tasks.map((el) => <Task {...el} removeHandler={removeTaskHandler} doneHandler={doneTaskHandler} favoriteHandler={favoriteTaskHandler} key={el.id}/>); 
         }
         
-        return tasks.filter((el) => el.category === category).map((el) => <Task {...el} handler={removeTaskHandler} key={el.id}/>); 
+        return tasks.filter((el) => el.category === category).map((el) => <Task {...el} removeHandler={removeTaskHandler} doneHandler={doneTaskHandler} favoriteHandler={favoriteTaskHandler} key={el.id}/>); 
     }
     
     return(
         <div className={cn(styles['task-manager'])}>
+            <Header login="jack" total={tasks.length} done="0" favorite="0"/>
             <div className={cn(styles['task-manager__filter'])}>
                 <Filter activeCategory={activeCategory} data={getUniqueCategories(tasks)} handler={sortTasksHandler}/>
             </div>
@@ -127,12 +149,9 @@ export default App;
 /* 
 
 ДЗ:
-1. отправить данные в фильтр +
-2. отрисовать детей +
-3. при клике на ребенка фильтруем (handler)
 4. заверстать шапку с лбым дизайном
 5. добаавить в шапрку счетчик: всего тасков: 10
 
-* пусть в шапке идет потсчет: dane: 5 fav: 3
+* пусть в шапке идет потсчет: done: 5 fav: 3
 
 */
